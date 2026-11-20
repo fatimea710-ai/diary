@@ -24,8 +24,8 @@ def main():
             date = day.strftime("%m/%d/%Y")
             entry = input("write your diary entry: ")
 
-            diary_manager.save_entry(diary_file, day, date, entry)
-
+            diary_manager.save_entry(diary_file, date, entry)
+            
         elif choice == "2":
             diary_manager.see_entries(diary_file)
 

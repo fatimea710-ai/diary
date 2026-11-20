@@ -1,8 +1,8 @@
-def save_entry(diary_file, day, date, entry):
+def save_entry(diary_file, date, entry):
     with open(diary_file, "a") as file:
         file.write(f"{date}: {entry}\n")
         print(f"Diary entry saved for {date}.")
-
+        
 def see_entries(diary_file):
     try:
         with open(diary_file, "r") as file:
