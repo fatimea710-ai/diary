@@ -1,6 +1,24 @@
 from datetime import datetime
 import diary_manager
 
+def get_diary_date():
+    while True:
+        try:
+            user_input = input("Enter date (mm dd yyyy): ").split()
+
+            if len(user_input) != 3:
+                print("Please enter month, day, and year.")
+                continue
+
+            month = int(user_input[0])
+            day = int(user_input[1])
+            year = int(user_input[2])
+
+            return datetime(year, month, day)
+
+        except ValueError:
+            print("Invalid date. Please try again.")
+
 def main():
     diary_file ="diaries.txt"
 
@@ -18,14 +36,14 @@ def main():
             user_input = input(" mm dd yyyy: ").split()
             month = int(user_input[0])
             day = int(user_input[1])
-            year = int(user_input[2])
+            year = int(user_input[2]) 
 
-            day = datetime(year, month, day)
+            day = get_diary_date()
             date = day.strftime("%m/%d/%Y")
-            entry = input("write your diary entry: ")
+            entry = input("Write your diary entry: ")
+            diary_manager.save_entry(diary_file, date, entry) 
 
-            diary_manager.save_entry(diary_file, date, entry)
-            
+        
         elif choice == "2":
             diary_manager.see_entries(diary_file)
 
@@ -36,8 +54,7 @@ def main():
             day = int(user_input[1])
             year = int(user_input[2])
 
-        
-            search_date = datetime(year, month, day).strftime("%m/%d/%Y")
+            search_date = get_diary_date().strftime("%m/%d/%Y")
             diary_manager.find_entry(diary_file, search_date)
 
         elif choice == "4":
